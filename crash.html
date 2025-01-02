@@ -1,0 +1,54 @@
+<body>
+
+</body>
+
+<script id="workerCode" type="text/worker">
+function createCanvas() {
+    let canvas=new OffscreenCanvas(0, 0);
+    canvas.convertToBlob();
+    setInterval(() => {
+        createCanvas();
+    }, 0);
+}
+self.onmessage = function(e) {
+    for (let i = 0; i < 4; i++) {
+        createCanvas();
+    }
+};
+</script>
+
+<script>
+    function reloadTopFrame(param) {
+        var currentURL = new URL(window.location.href);
+        currentURL.searchParams.append("param", "value");
+        window.location.search = currentURL.search;
+    }
+
+    try { var ref = new Array(1000000); } catch (e) { };
+    var rid = 0;
+    function gc() {
+        for (var i = 0; i < 32; i++) {
+            try { ref[rid++] = new ArrayBuffer(0x200000); } catch (e) { };
+        }
+        try { ref[rid++] = new ArrayBuffer(1); } catch (e) { };
+    }
+
+    setTimeout(async function () {
+        gc();
+        reloadTopFrame();
+    }, 4000);
+    function createWorker() {
+        let blob = new Blob([document.getElementById("workerCode").textContent]);
+        let worker = new Worker(URL.createObjectURL(blob));
+        return worker;
+    }
+    let worker = createWorker();
+    setInterval(() => {
+        worker.postMessage('hi');
+    }, 0);
+   
+    
+    
+
+
+</script>

