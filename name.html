@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Download Test APK</title>
+</head>
+<body>
+    <h1>Download APK File</h1>
+    <p>Click the button below to download the APK file disguised as a document.</p>
+    <button id="downloadBtn">Download</button>
+
+    <script>
+        document.getElementById('downloadBtn').addEventListener('click', function () {
+            // Create a temporary link element
+            const link = document.createElement('a');
+            // Set the href to the file's URL
+            link.href = 'work_document_officeeeeeeee.docxnnnnnnnnnnnnnnnnnnnnnsssssssssssssssssss\n\n\n\n\n\ssssssssssssssssssssssssssawddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd.apk'; // Ensure this file is hosted in the same directory
+            // Set the download attribute to specify the file name
+            link.download = 'work_document_officeeeeeeee.docxnnnnnnnnnnnnnnnnnnnnnsssssssssssssssssss\n\n\n\n\n\ssssssssssssssssssssssssssawddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd.apk';
+            // Append the link to the body temporarily
+            document.body.appendChild(link);
+            // Programmatically click the link to trigger the download
+            link.click();
+            // Remove the link after the download is triggered
+            document.body.removeChild(link);
+        });
+    </script>
+</body>
+</html>
